@@ -14,5 +14,5 @@ jobs:
         run: |
           echo "event=${GITHUB_EVENT_NAME} ref=${GITHUB_REF}"
           sleep 20
-          if [ -e fail.txt ]; then echo "fail.txt present: red on purpose"; exit 1; fi
+          if [ "${GITHUB_EVENT_NAME}" = "merge_group" ] && [ -e fail.txt ]; then echo "fail.txt present: red on purpose"; exit 1; fi
           echo "green"
